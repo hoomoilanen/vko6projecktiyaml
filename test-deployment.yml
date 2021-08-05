@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog
+  labels:
+    app: blog
+spec:
+  selector:
+    matchLabels:
+      app: blog
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: blog
+    spec:
+      containers:
+      - image: gcr.io/viikko6-projekti/softa-image-3
+        name: softa-image-3
+        ports:
+        - containerPort: 8080
